@@ -1,1 +1,1 @@
-# ev_CNN_classifier
+# CNN Classifier for detecting pineapple on pizza
