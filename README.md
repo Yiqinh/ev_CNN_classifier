@@ -4,6 +4,9 @@ This project showcases a toy Convolutional Neural Network capable of detecting p
 
 ![Pineapple Pizza](https://i.cbc.ca/1.3993184.1583946118!/fileImage/httpImage/hawaiian-pizza-pineapple-pizza.jpg)
 
+<img src="https://i.cbc.ca/1.3993184.1583946118!/fileImage/httpImage/hawaiian-pizza-pineapple-pizza.jpg" alt="drawing" width="200"/>
+
+
 ## Prerequisites
 Install the dependencies 
 ``` bash
