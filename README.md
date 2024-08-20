@@ -10,7 +10,7 @@ Install the dependencies
 pip install -r requirements.txt
 ```
 
-## Usage
+## Running the Web App
 1. To run locally either run from the IDE or use the following command:
 ```bash
 python website/app.py
