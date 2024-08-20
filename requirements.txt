@@ -3,3 +3,4 @@ tensorflow-gpu
 opencv-python 
 matplotlib
 numpy
+flask
