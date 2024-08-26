@@ -37,16 +37,19 @@ code {
 
 
 .button {
-    padding: 12px 17px;
     font-size: 18px;
     background: blueviolet;
     color: #fff;
     display: inline-block;
-    border: 0;
-    border-radius: 0;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
     cursor: pointer;
-    outline: none;
-    font-family: Rockwell,Courier Bold,Courier,Georgia,Times,Times New Roman,serif; 
+    font-family: Rockwell,Courier Bold,Courier,Georgia,Times,Times New Roman,serif;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 5px;
 }
 
 .inference-results{
@@ -109,4 +112,25 @@ code {
   width: 100%;
   height: auto;
   border-radius: 8px;
+}
+
+.custom-file-upload {
+  font-size: 18px;
+  background: blueviolet;
+  color: #fff;
+  display: inline-block;
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-family: Rockwell,Courier Bold,Courier,Georgia,Times,Times New Roman,serif;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 5px;
+
+}
+
+input[type="file"] {
+  display: none;
 }

@@ -3,8 +3,12 @@ import { useState, useRef } from "react";
 function App() {
   const [imageUrl, setImageUrl] = useState(null);
   const imageRef = useRef();
+  const [isInfered, setIsInfered] = useState(false)
 
-  const [results, setResults] = useState([]);
+  const [curClass, setCurClass] = useState([
+    { pizza: "Pineapple", confidence: 24.47, top: false },
+    { pizza: "No Pineapple", confidence: 38.37, top: true },
+  ]);
 
   const uploadImage = async (e) => {
     const { files } = e.target;
@@ -21,8 +25,10 @@ function App() {
         body: data,
       });
       let res = await response.json();
-
       console.log(res.status);
+
+      setIsInfered(false)
+
       if (res.status !== 'OPEN SEASAME') {
         alert("Error uploading file");
       }
@@ -31,19 +37,22 @@ function App() {
     }
   };
 
-  const inference = async (e) => {
+  const infer = async (e) => {
     let response = await fetch("/infer", {
       method: "post",
       body: "perform inference",
     });
     let res = await response.json();
+    setCurClass([{ pizza: "Pineapple", confidence: res.pineapple, top: res.pine_top },
+      { pizza: "No Pineapple", confidence: res.no_pineapple, top: <res className="no_pine_top"></res> }])
+    setIsInfered(true)
   }
 
   const CnnResult = ({ is_pineapple, confidence, isTopResult }) => (
     <div className={`pineapple-result ${isTopResult ? "top-result" : ""}`}>
       <div className="pineapple-header">
         <span className="pizza-name">{is_pineapple.toUpperCase()}</span>
-        {isTopResult && <span className="best-guess">Best Guess</span>}
+        {isTopResult==='True' && <span className="best-guess">Best Guess</span>}
       </div>
       <div className="confidence-level">
         Confidence level: {confidence.toFixed(2)}%
@@ -64,21 +73,19 @@ function App() {
     </div>
   );
 
-  const sampleResults = [
-    { pizza: "Pineapple", confidence: 24.47, top: false },
-    { pizza: "No Pineapple", confidence: 38.37, top: true },
-  ];
-
   return (
     <div className="App">
       <h1 className="header">Pineapple Pizza Classification</h1>
       <div className="inputHolder">
-        <input
-          type="file"
-          accept="image/jpg, image/jpeg, image/png"
-          className="uploadInput"
-          onChange={uploadImage}
-        />
+        <label class="custom-file-upload">
+          <input
+            type="file"
+            accept="image/jpg, image/jpeg, image/png"
+            className="uploadInput"
+            onChange={uploadImage}
+          />
+          Upload Image
+        </label>
       </div>
       <div className="mainWrapper">
         <div className="mainContent">
@@ -92,9 +99,9 @@ function App() {
               />
             )}
           </div>
-          <PizzaTypeResults results={sampleResults} />
+          {isInfered && imageUrl && <PizzaTypeResults results={curClass} />}
         </div>
-        {imageUrl && <button className="button">Identify Image</button>}
+        {imageUrl && <button className="button" onClick={infer}>Identify Image</button>}
       </div>
     </div>
   );
