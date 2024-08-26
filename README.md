@@ -13,7 +13,14 @@ pip install -r requirements.txt
 ```
 
 ## Running the Web App
-1. To run locally either run from the IDE or use the following command:
+To run:
+Go To the flask_server directory:
 ```bash
-python website/app.py
+python server.py
 ```
+Then:
+Go to the react_client directory:
+```bash
+npm start
+```
+![alt text](image.png)
